@@ -27,7 +27,7 @@ public class ContaUsuario {
         setDataAbertura(dataAbertura);
         setSaldo(saldo);
         this.ativa = ativa;
-        setTipo(tipo);
+        this.tipo = tipo;
     }
 
     public Long getNumeroConta() {
