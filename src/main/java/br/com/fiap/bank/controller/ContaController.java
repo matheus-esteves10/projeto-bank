@@ -28,4 +28,28 @@ public class ContaController {
             return ResponseEntity.status(400).body(e);
         }
     }
+
+    @GetMapping("/{numeroConta}")
+    public ContaUsuario getById(@PathVariable Long numeroConta) {
+        return repository.stream()
+                .filter(conta -> conta.getNumeroConta().equals(numeroConta))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+    }
+
+
+    @GetMapping("/cpf/{cpf}")
+    public ContaUsuario getByCpf(@PathVariable String cpf) {
+        return repository.stream()
+                .filter(conta -> conta.getCpf().equals(cpf))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Conta não encontrada para o CPF: " + cpf));
+    }
+
+
+
+
+
+
+
 }
