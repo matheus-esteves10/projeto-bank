@@ -2,8 +2,10 @@ package br.com.fiap.bank.controller;
 
 import br.com.fiap.bank.exceptions.InvalidCreatedAccount;
 import br.com.fiap.bank.model.ContaUsuario;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,9 @@ public class ContaController {
         return repository.stream()
                 .filter(conta -> conta.getNumeroConta().equals(numeroConta))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+                .orElseThrow(
+                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+                );
     }
 
 
@@ -43,13 +47,9 @@ public class ContaController {
         return repository.stream()
                 .filter(conta -> conta.getCpf().equals(cpf))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Conta não encontrada para o CPF: " + cpf));
+                .orElseThrow(
+                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+                );
     }
-
-
-
-
-
-
 
 }
