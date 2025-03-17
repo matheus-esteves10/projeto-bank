@@ -1,5 +1,6 @@
 package br.com.fiap.bank.controller;
 
+import br.com.fiap.bank.dto.PixDto;
 import br.com.fiap.bank.exceptions.InvalidCreatedAccount;
 import br.com.fiap.bank.model.ContaUsuario;
 import org.springframework.http.HttpStatus;
@@ -50,6 +51,21 @@ public class ContaController {
                 .orElseThrow(
                         () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
                 );
+    }
+
+    @PostMapping("/pix")
+    public ResponseEntity<?> createPix (@RequestBody PixDto dto) {
+        if (getById(dto.contaOrigem()) != null &&
+                getById(dto.contaDestino()) != null &&
+                dto.valor() > 0) {
+
+
+
+            return ResponseEntity.ok("Pix criado com sucesso!");
+        }
+
+        return ResponseEntity.badRequest().body("Dados inválidos para a transação.");
+
     }
 
 }
