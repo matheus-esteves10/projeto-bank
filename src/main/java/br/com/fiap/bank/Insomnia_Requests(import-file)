@@ -1,0 +1,222 @@
+type: collection.insomnia.rest/5.0
+name: Bank-project
+meta:
+  id: wrk_0b4c18a038e44aa482924eb707aa5714
+  created: 1741874775215
+  modified: 1741874775215
+collection:
+  - url: http://localhost:8080/conta/1234567801
+    name: getById
+    meta:
+      id: req_0ee18f3a29e34357bb2f167b3f95e191
+      created: 1741874826533
+      modified: 1742308317399
+      isPrivate: false
+      sortKey: -1741874826533
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/10.3.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/conta
+    name: getAll
+    meta:
+      id: req_9c963f819b6e4bce897da11d8b01b644
+      created: 1741874830413
+      modified: 1741874924263
+      isPrivate: false
+      sortKey: -1741874830413
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/10.3.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/conta/cpf/12345678902
+    name: getByCpf
+    meta:
+      id: req_8bbe381073a248d3b8a3b342f4b79ce1
+      created: 1741874847435
+      modified: 1742308334494
+      isPrivate: false
+      sortKey: -1741874847435
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/10.3.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/conta
+    name: CreateConta
+    meta:
+      id: req_cfe08705035b41cc99f96ed53b81e25e
+      created: 1741874945992
+      modified: 1742309339875
+      isPrivate: false
+      sortKey: -1741874945992
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+            "numeroConta": 1234567801,
+            "agencia": 1235,
+            "nomeTitular": "Julio Almeida",
+            "cpf": "12345678902",
+            "dataAbertura": "2024-04-13",
+            "saldo": 1900.75,
+            "tipo": "SALARIO"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/10.3.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/conta/desativar/1234567801
+    name: DesativarConta
+    meta:
+      id: req_49474214133b4e58bb7d13d95d25bb2c
+      created: 1742308707336
+      modified: 1742308747725
+      isPrivate: false
+      sortKey: -1742308707336
+    method: PATCH
+    headers:
+      - name: User-Agent
+        value: insomnia/10.3.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/conta/deposito
+    name: Deposito
+    meta:
+      id: req_1b7f991c9cb24d5a80ab1da310ffff3c
+      created: 1742308822646
+      modified: 1742308908094
+      isPrivate: false
+      sortKey: -1742308822646
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "contaDestino": 1234567801,
+            "valor": 250.75
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/10.3.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/conta/saque
+    name: Saque
+    meta:
+      id: req_3cac4720370846acb43b9ec4c72a3f49
+      created: 1742308937634
+      modified: 1742309242412
+      isPrivate: false
+      sortKey: -1742308937634
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "contaOrigem": 1234567801,
+            "valor": 250.75
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/10.3.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/conta/pix
+    name: Pix
+    meta:
+      id: req_179a97ffde7c4f369213ac682e9b8fef
+      created: 1742309098983
+      modified: 1742309221211
+      isPrivate: false
+      sortKey: -1742309098983
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+           "contaOrigem": 123456780,
+        	 "contaDestino": 1234567801,
+           "valor": 250.75
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/10.3.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_305f007351e6a9e70dfad9e4a82f4773e7eb046f
+    created: 1741874775239
+    modified: 1741874775239
+environments:
+  name: Base Environment
+  meta:
+    id: env_305f007351e6a9e70dfad9e4a82f4773e7eb046f
+    created: 1741874775229
+    modified: 1741874775229
+    isPrivate: false
