@@ -1,8 +1,10 @@
 package br.com.fiap.bank.model;
 
 import br.com.fiap.bank.exceptions.InvalidCreatedAccount;
+import br.com.fiap.bank.exceptions.InvalidDeposit;
+import br.com.fiap.bank.exceptions.InvalidWithdraw;
+
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class ContaUsuario {
 
@@ -12,22 +14,22 @@ public class ContaUsuario {
     private String cpf;
     private LocalDate dataAbertura;
     private double saldo;
-    private String ativa;
+    private StatusContaAtiva ativa = StatusContaAtiva.S;
     private TipoConta tipo;
 
     public ContaUsuario() {
     }
 
     public ContaUsuario(Long numeroConta, int agencia, String nomeTitular, String cpf,
-                        LocalDate dataAbertura, double saldo, String ativa, TipoConta tipo) {
+                        LocalDate dataAbertura, double saldo, TipoConta tipo) {
         this.numeroConta = numeroConta;
         this.agencia = agencia;
         setNomeTitular(nomeTitular);
         setCpf(cpf);
         setDataAbertura(dataAbertura);
         setSaldo(saldo);
-        this.ativa = ativa;
         this.tipo = tipo;
+        this.ativa = StatusContaAtiva.S;
     }
 
     public Long getNumeroConta() {
@@ -93,11 +95,11 @@ public class ContaUsuario {
         this.saldo = saldo;
     }
 
-    public String getAtiva() {
+    public StatusContaAtiva getAtiva() {
         return ativa;
     }
 
-    public void setAtiva(String ativa) {
+    public void setAtiva(StatusContaAtiva ativa) {
         this.ativa = ativa;
     }
 
@@ -107,5 +109,22 @@ public class ContaUsuario {
 
     public void setTipo(TipoConta tipo) { //validação feita com enum
         this.tipo = tipo;
+    }
+
+    public void depositar(double valor) {
+        if (valor < 0) {
+            throw new InvalidDeposit("O valor do depósito não pode ser negativo.");
+        }
+        saldo += valor;
+    }
+
+    public void sacar(double valor) {
+        if (saldo < valor) {
+            throw new InvalidWithdraw("O valor do saque não pode ser maior do que o saldo.");
+        };
+        if (valor < 0) {
+            throw new InvalidWithdraw("O valor do saque não pode ser negativo.");
+        }
+        saldo -= valor;
     }
 }
